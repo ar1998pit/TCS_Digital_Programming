@@ -55,8 +55,10 @@ static int maxDivide(int a, int b)
 
 =====================================================================================================+
 
-DYNAMIC PROGRAMING
-
+ 2. DYNAMIC PROGRAMING
+    Analysis
+    Space=>Not taking extra space=>O(n)
+    Time=>O(n)
 /*
     Best First Search
     2   3   5   
