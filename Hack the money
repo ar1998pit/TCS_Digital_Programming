@@ -1,0 +1,40 @@
+You are a bank account hacker.Initially you have 1 rupee in your account, and you want exactly N rupees in your account.You wrote two hacks, First hack can multiply the amount of money you own by 10, while the second can multiply it by 20. These hacks can be used any number of time . Can you achieve the desired amount N using these hacks.
+Constraints:
+
+1<=T<=100
+
+1<=N<=10^12
+
+Input ->
+
+The first line of the input contains a single integer T denoting the number of test cases.
+The description of T test cases follows.The first and only line of each test case contains a single integer N.  
+ Output ->For each test case, print a single line containing the string "Yes" if you can make exactly N rupees or "No" otherwise.
+ SAMPLE INPUT 
+5
+1
+2
+10
+25
+200
+SAMPLE OUTPUT 
+Yes
+No
+Yes
+No
+Yes
+ ==================================================================================
+ Algo :-
+ 1. Initally the amount available in your bank acct is Re. 1
+ 2. The Possible hack is nothing but you can take the multiple of 10 or multiple of 20
+ 3. If you can make the given amount, then simply return Yes
+ 4. We would return NO
+ 
+ Base Condition:
+ If we are trying to make Rs1 and already 1 rs is deposited as inital amount . You could simply say Yes
+ Otherwise , we have to check HACK of 10 and 20 with initial amount 1
+ For 10-->i and 20->hey.
+ 
+ ===========================================================================================
+ 
+ 
