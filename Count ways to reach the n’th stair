@@ -1,0 +1,45 @@
+There are n stairs, a person standing at the bottom wants to reach the top. 
+The person can climb either 1 stair or 2 stairs at a time. 
+Count the number of ways, the person can reach the top.
+
+Examples:
+
+Input: n = 1
+Output: 1
+There is only one way to climb 1 stair
+
+Input: n = 2
+Output: 2
+There are two ways: (1, 1) and (2)
+
+Input: n = 4
+Output: 5
+(1, 1, 1, 1), (1, 1, 2), (2, 1, 1), (1, 2, 1), (2, 2)
+
+Method 1: The first method uses the technique of recursion to solve this problem.
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+	public static void main (String[] args) {
+	    Scanner sc = new Scanner(System.in);
+       int a = sc.nextInt(); 
+        
+        System.out.println(countWays(a)); 
+    } 
+    
+	 public static int fib(int n)    
+	{ 
+        if (n <= 1) 
+            return n; 
+        return fib(n - 1) + fib(n - 2); 
+    } 
+  
+    static int countWays(int s) 
+    { 
+        return fib(s + 1); 
+    } 
+	
+	
+}
