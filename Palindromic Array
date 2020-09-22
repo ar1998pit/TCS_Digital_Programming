@@ -1,0 +1,84 @@
+You are given an array A of size N. Your task is to find the minimum number of operations needed to convert the given array to 'Palindromic Array'.
+Palindromic Array:
+[23,15,23] is a ‘Palindromic Array’ but [2,0,1] is not.
+
+The only allowed operation is that you can merge two adjacent elements in the array and replace them with their sum.
+
+Input
+The first line of each test case is N, where N is the size of array.
+The second line of each test case contains N space separated integers which is the input for the array.
+
+Output
+Output the minimum number of operations required to make the given array a palindromic array.
+
+Constraints
+1<=N<=100
+
+Example#1
+Input
+5
+3 2 3 3 5
+Output
+1
+Explanation: For Test Case 1: [3 2 3 3 5] after merging the 1st two elements 3 and 2, we get the array as [5 3 3 5] which is a palindrome, hence only 1 operation is needed.
+=================================================================================================================================================================================
+
+ALgorithm:
+1.Initally , we have to take 2 pointers i & j.
+i=0;
+j=n-1
+2.if(arr[i]==arr[j])
+    i++;
+    j--
+3.if(arr[i]>arr[j]),Merge 2 elements from the last position
+j and j-1 and store the result inside  j-1
+a[j-1]=a[j]+a[j-1];
+ else
+if(arr[i]<arr[j]),Merge 2 adjacent elements from the left and replace their sum
+a[i+1]=a[i]+a[i+1]
+
+=========================================================================================
+
+/*package whatever //do not write package name here */
+//ar1998pit//
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+    
+    static  int findMinOps(int[] arr, int n){
+        int res =0;
+        
+        for (int i=0,j=n-1;i<=j;){
+            
+            if (arr[i] == arr[j]){
+                i++;
+                j--;
+            }
+            else if (arr[i] >arr[j]){
+                j--;
+                arr[j] += arr[j+1];
+                res++;
+            }
+            else{
+                i++;
+                arr[i] +=  arr[i-1];
+                res++;
+            }
+        }
+        return res;
+    }
+	public static void main (String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int arr[] = new int[n];
+		for (int i=0;i<n;i++){
+		    arr[i]=sc.nextInt();
+		    
+		}
+		int res = findMinOps(arr,n);
+		System.out.println(res);
+	}
+}
+
