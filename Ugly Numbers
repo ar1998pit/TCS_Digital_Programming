@@ -1,0 +1,89 @@
+Ugly numbers are numbers whose only prime factors are 2, 3 or 5.
+The sequence 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, … 
+shows the first 11 ugly numbers. By convention, 1 is included.
+
+Given a number n, the task is to find n’th Ugly number.
+Input  : n = 7
+Output : 8
+
+Input  : n = 10
+Output : 12
+
+Input  : n = 15
+Output : 24
+
+Input  : n = 150
+Output : 5832
+======================================================================
+ 1 
+ 2 = 2/2 = 1 = Ugly Number
+ 3 = 3/3 = 1 = Ugly nUm
+ 4 = 4/2 = 2 = 2/2 = 1 = Ugly Number
+ 
+ 1. Brute Force Approach - 
+    Analysis
+    Space=>Not taking extra space=> O(1)=>Constant
+    Time=>Nlog(N)=>N2 =>logarithmic
+
+class GFG{
+static int maxDivide(int a, int b) 
+    { 
+        while(a % b == 0) 
+            a = a/b; 
+        return a; 
+    } 
+      
+    /* Function to check if a number  
+    is ugly or not */
+    static int isUgly(int no) 
+    { 
+        no = maxDivide(no, 2); 
+        no = maxDivide(no, 3); 
+        no = maxDivide(no, 5); 
+          
+        return (no == 1)? 1 : 0; 
+    } 
+    
+    public static void main(String args[]) 
+    { 
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+        int res = getNthUglyNo(1n); 
+        System.out.println(n); 
+    } 
+} 
+
+=====================================================================================================+
+
+DYNAMIC PROGRAMING
+
+/*
+    Best First Search
+    2   3   5   
+    4   6   10  <-- generated using ugly number at index 1, [*2, *3, *5]
+    6   9   15  <-- generated using ugly number at index 2
+    8   12  20  <-- generated using ugly number at index 3
+    ...
+    
+    [2, 3, 5], take 2, generating 4, 6, 10
+    [4, 3, 5], take 3, generating 6, 9, 15
+    [4, 6, 5], take 4, generating 8, 12,20
+    ...
+*/
+public class Solution {
+    public int nthUglyNumber(int n) {
+        if (n <= 0) { return 0; }
+        List<Integer> ans = new ArrayList<>();
+        ans.add(1);
+        int p2 = 1, p3 = 1, p5 = 1;  // p2 -- which index is used to generate next ugly number in 2's column
+        int head2 = 2, head3 = 3, head5 = 5;
+        while (ans.size() < n) {
+            int min = Math.min(head2, Math.min(head3, head5));
+            ans.add(min);
+            if (min == head2) { head2 = ans.get(p2++) * 2; }
+            if (min == head3) { head3 = ans.get(p3++) * 3; }
+            if (min == head5) { head5 = ans.get(p5++) * 5; }
+        }    
+        return ans.get(ans.size()-1);
+    }
+}
